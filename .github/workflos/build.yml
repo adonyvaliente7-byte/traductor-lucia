@@ -15,7 +15,15 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y autoconf automake libtool build-essential zip unzip openjdk-17-jdk python3-pip
-        pip install buildozer cython==0.29.33
+        pip install buildozer cython==0.29.33 gdown
+
+    - name: Rename main file
+      run: mv traductor.py main.py
+
+    - name: Download models from Google Drive
+      run: |
+        gdown --id 1C5xnHkKwhn_C3g3CTVb-7k545Fpt8rMl -O translate-es_en.argosmodel
+        gdown --id 1QStO5fRN5VeqBWfNBnzDkPSqtrvrnHSu -O translate-en_es.argosmodel
 
     - name: Create buildozer.spec
       run: |
